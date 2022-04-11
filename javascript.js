@@ -3,6 +3,8 @@ let button=document.querySelector('.add')
 let lastInput='';
 let listDiv=document.querySelector('.list')
 let savebutton=document.querySelector('.saveb')
+let divbutton=document.querySelector('.buttonDiv')
+let myList=document.querySelector('.myLists')
 let listCounter=0;
 let myListCounter=0;
 val.addEventListener("keyup", function(event) {
@@ -20,6 +22,8 @@ function createListElement(){
     lastInput=list;
     val.value= "";
     if(lastInput.length>0){
+      listDiv.style.display='block'
+      divbutton.style.display='flex'
       let newItem=document.createElement('div')
       listDiv.appendChild(newItem)
       newItem.textContent=lastInput;
@@ -53,20 +57,12 @@ function createListElement(){
       let classobut="butnum"+listCounter;
       newItem.classList.add(classo)
       butoo.classList.add(classobut)
-      savebutton.addEventListener('click',function(){
-        document.querySelector("."+classo).remove()
-        document.querySelector('h3').remove()
-        document.querySelector('.list').classList.remove('daamate')
-        savebutton.style.display='none'
-        copyDiv();
-        myListCounter++;
-        
-      })
       butoo.addEventListener('click',function(){
           if(document.querySelector('.list').clientHeight<100){
-              document.querySelector('h3').remove()
+              document.querySelector('h3').style.display='none'
               document.querySelector("."+classo).remove()
               document.querySelector('.list').classList.remove('daamate')
+              divbutton.style.display='none'
           }
           document.querySelector("."+classo).remove()
       })
@@ -75,8 +71,37 @@ function createListElement(){
     }
 }
 
-function copyDiv(){
-  let copy=document.querySelector('.list');
-  let paste=document.querySelector('.listcont')
-  paste.innerHTML=copy.innerHTML;
-}
+savebutton.addEventListener('click',function(){
+  for(let i=1;i<=listCounter;i++){
+    let spin='.butnum' + i;
+    let was=document.querySelector(spin)
+    was.remove()
+    
+  }
+  myListCounter++;
+  let copy=document.querySelector('.daamate')
+  let newList=document.createElement('div')
+  newList.innerHTML=copy.innerHTML
+  myList.appendChild(newList)
+  myList.classList.add('myListDiv'+myListCounter)
+  myList.style.display='flex'
+  myList.classList.add('flex')
+  newList.style.width='25%'
+  
+  for(let i=1;i<=listCounter;i++){
+    let spin='.listnum' + i;
+    let was=document.querySelector(spin)
+    was.remove()
+    
+  }
+  listDiv.style.display="none"
+  divbutton.style.display='none'
+  for(let i=1;i<=listCounter;i++){
+    let kok='.listnum' + i;
+    let mu=document.querySelector(kok)
+    mu.classList.add('margin')
+    myList.style.backgroundColor='none'
+  }
+  listCounter=0;
+  
+})
