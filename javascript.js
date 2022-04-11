@@ -106,6 +106,7 @@ savebutton.addEventListener('click',function(){
   newList.innerHTML=copy.innerHTML
   myList.appendChild(newList)
   myList.classList.add('myListDiv'+myListCounter)
+  myList.setAttribute("id",'myListDivID')
   newList.classList.add('myListDiv'+myListCounter)
   newList.style.width='25%'
   newList.style.backgroundColor='pink'
