@@ -109,6 +109,9 @@ h3{
 .block{
     display: block;
 }
+.none{
+    display: none;
+}
 .daamate{
     background-color: rgb(70, 186, 143);
     border: 2px rgb(0, 74, 1) solid;
@@ -122,4 +125,21 @@ h3{
     width: 80%;
     margin-left: 10%;
     margin-top: 50px;
+}
+.buttonDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    
+}
+.saveb{
+    background-color: greenyellow;
+    color: green;
+    font-weight: bolder;
+    padding: 3px;
+    border-radius: 20px;
+    border: 2px solid white;
+    cursor: pointer;
+    display: none;
 }

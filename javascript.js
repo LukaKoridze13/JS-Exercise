@@ -2,8 +2,9 @@ let val=document.querySelector('.input')
 let button=document.querySelector('.add')
 let lastInput='';
 let listDiv=document.querySelector('.list')
+let savebutton=document.querySelector('.saveb')
 let listCounter=0;
-
+let myListCounter=0;
 val.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
       event.preventDefault();
@@ -42,13 +43,25 @@ function createListElement(){
       butoo.style.cursor='pointer'
       butoo.style.height='4px'
       butoo.style.length='10px'
-
+      
       document.querySelector('h3').style.display='block'
-      listCounter++; 
+      listCounter++;
+      if(listCounter==1){
+        savebutton.style.display='block'
+      }
       let classo="listnum"+listCounter;
       let classobut="butnum"+listCounter;
       newItem.classList.add(classo)
       butoo.classList.add(classobut)
+      savebutton.addEventListener('click',function(){
+        document.querySelector("."+classo).remove()
+        document.querySelector('h3').remove()
+        document.querySelector('.list').classList.remove('daamate')
+        savebutton.style.display='none'
+        copyDiv();
+        myListCounter++;
+        
+      })
       butoo.addEventListener('click',function(){
           if(document.querySelector('.list').clientHeight<100){
               document.querySelector('h3').remove()
@@ -60,4 +73,10 @@ function createListElement(){
     }else{
       alert('Please enter a valid product')
     }
+}
+
+function copyDiv(){
+  let copy=document.querySelector('.list');
+  let paste=document.querySelector('.listcont')
+  paste.innerHTML=copy.innerHTML;
 }
