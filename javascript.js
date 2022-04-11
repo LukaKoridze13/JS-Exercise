@@ -60,14 +60,32 @@ function createListElement(){
       newItem.classList.add(classo)
       butoo.classList.add(classobut)
       butoo.addEventListener('click',function(){
-          if(document.querySelector('.list').clientHeight<100){
-              document.querySelector('h3').style.display='none'
-              document.querySelector("."+classo).remove()
-              document.querySelector('.list').classList.remove('daamate')
+          if(document.querySelector('.container').clientHeight<230){
+              newItem.remove()
+              listDiv.style.display='none'
               divbutton.style.display='none'
+              listCounter=0;
+          }else{
+            newItem.remove()
+            listCounter--;
+            for(let i=1;i<=listCounter;i++){
+              let classo1="listnum"+i;
+              listDiv.children[i].removeAttribute('class')
+              listDiv.children[i].classList.add(classo1)
+            }
+            for(let i=1;i<=listCounter;i++){
+              let classo3=".listnum"+i;
+              let classo2="butnum"+i;
+              let fox=document.querySelector(classo3);
+              fox.querySelector('button').removeAttribute('class')
+              fox.querySelector('button').classList.add(classo2)
+
+            }
+            
           }
-          document.querySelector("."+classo).remove()
-      })
+            
+            
+          })
     }else{
       alert('Please enter a valid product')
     }
@@ -77,8 +95,9 @@ savebutton.addEventListener('click',function(){
   for(let i=1;i<=listCounter;i++){
     let spin='.butnum' + i;
     let was=document.querySelector(spin)
-    was.remove()
-    
+    if(was!==null){
+      was.remove()
+    }
   }
   myListCounter++;
   document.querySelector('h6').textContent='My Lists ('+myListCounter+')'
@@ -97,16 +116,20 @@ savebutton.addEventListener('click',function(){
     let gen=newList.children[0];
     gen.textContent='LIST'
     let gen1=newList.children[i];
-    gen1.style.color='rgb(120, 4, 64)'
-    gen1.style.border='none'
-    gen1.style.fontWeight='bolder'
+    if(gen1!==null){
+      gen1.style.color='rgb(120, 4, 64)'
+      gen1.style.border='none'
+      gen1.style.fontWeight='bolder'
+    }
   }
   
   
   for(let i=1;i<=listCounter;i++){
     let spin='.listnum' + i;
     let was=document.querySelector(spin)
-    was.remove()
+    if(was!==null){
+      was.remove()
+    }
     
   }
   listDiv.style.display="none"
