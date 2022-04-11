@@ -7,6 +7,8 @@ let divbutton=document.querySelector('.buttonDiv')
 let myList=document.querySelector('.myLists')
 let listCounter=0;
 let myListCounter=0;
+document.querySelector('.headerbutton1').appendChild(document.createElement('h6'))
+document.querySelector('h6').textContent='My Lists ('+myListCounter+')'
 val.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
       event.preventDefault();
@@ -79,14 +81,27 @@ savebutton.addEventListener('click',function(){
     
   }
   myListCounter++;
+  document.querySelector('h6').textContent='My Lists ('+myListCounter+')'
   let copy=document.querySelector('.daamate')
   let newList=document.createElement('div')
   newList.innerHTML=copy.innerHTML
   myList.appendChild(newList)
   myList.classList.add('myListDiv'+myListCounter)
-  myList.style.display='flex'
-  myList.classList.add('flex')
+  newList.classList.add('myListDiv'+myListCounter)
   newList.style.width='25%'
+  newList.style.backgroundColor='pink'
+  newList.style.borderRadius='30px'
+  newList.style.margin='20px'
+  newList.style.border='1px black solid'
+  for(let i=1;i<=listCounter;i++){
+    let gen=newList.children[0];
+    gen.textContent='LIST'
+    let gen1=newList.children[i];
+    gen1.style.color='rgb(120, 4, 64)'
+    gen1.style.border='none'
+    gen1.style.fontWeight='bolder'
+  }
+  
   
   for(let i=1;i<=listCounter;i++){
     let spin='.listnum' + i;
@@ -100,8 +115,40 @@ savebutton.addEventListener('click',function(){
     let kok='.listnum' + i;
     let mu=document.querySelector(kok)
     mu.classList.add('margin')
+
     myList.style.backgroundColor='none'
   }
+  let delet=document.createElement('button')
+  newList.appendChild(delet)
+  delet.classList.add('delete'+myListCounter)
   listCounter=0;
   
+  delet.style.marginLeft='37%'
+  delet.innerText='Delete'
+  delet.style.backgroundColor='red'
+  delet.style.border='1px black solid'
+  delet.style.borderRadius='20px'
+  delet.style.fontSize='12px'
+  delet.style.padding='5px'
+  delet.style.cursor='pointer'
+  newList.style.position='relative'
+  delet.style.position='absolute'
+  delet.style.top='6px'
+  delet.style.left='35%'
+  delet.addEventListener('click',function(){
+    newList.remove()
+    myListCounter--;
+    document.querySelector('h6').textContent='My Lists ('+myListCounter+')'
+  })
+  
+})
+document.querySelector('.headerbutton1').addEventListener('click',function(){
+  myList.style.display='flex'
+  myList.classList.add('flex')
+  document.querySelector('.container').style.display='none'
+})
+document.querySelector('.headerbutton').addEventListener('click',function(){
+  myList.style.display='none'
+  
+  document.querySelector('.container').style.display='flex'
 })
